@@ -11,11 +11,12 @@ pipeline {
                 echo 'No hay build, es HTML plano.'
             }
         }
-            stage('Deploy') {
+        stage('Deploy') {
             steps {
                 bat '''
-                mkdir C:\\deploy\\minigestor
-                xcopy * C:\\deploy\\minigestor /E /Y /I
+                if exist C:\\xampp\\htdocs\\MiniGestorInventory-Practica rmdir /s /q C:\\xampp\\htdocs\\MiniGestorInventory-Practica
+                mkdir C:\\xampp\\htdocs\\MiniGestorInventory-Practica
+                xcopy * C:\\xampp\\htdocs\\MiniGestorInventory-Practica /E /Y /I
                 '''
             }
         }
