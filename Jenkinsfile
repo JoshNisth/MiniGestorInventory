@@ -15,10 +15,23 @@ pipeline {
                     exit 1
                 )
 
+                echo Validando que style.css exista...
+                if not exist style.css (
+                    echo "ERROR: style.css no encontrado"
+                    exit 1
+                )
+
                 echo Validación manual de HTML...
                 findstr /C:"</html>" index.html >nul
                 if %errorlevel% neq 0 (
                     echo "ERROR: index.html parece incompleto o mal cerrado"
+                    exit 1
+                )
+
+                echo Validación manual de CSS...
+                findstr /C:"{" style.css >nul
+                if %errorlevel% neq 0 (
+                    echo "ERROR: style.css parece incompleto o mal escrito"
                     exit 1
                 )
 
