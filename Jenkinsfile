@@ -33,6 +33,7 @@ pipeline {
                 if exist C:\\xampp\\htdocs\\MiniGestorInventory-Practica rmdir /s /q C:\\xampp\\htdocs\\MiniGestorInventory-Practica
                 mkdir C:\\xampp\\htdocs\\MiniGestorInventory-Practica
                 xcopy * C:\\xampp\\htdocs\\MiniGestorInventory-Practica /E /Y /I
+                copy build.zip C:\\xampp\\htdocs\\MiniGestorInventory-Practica\\
                 '''
             }
         }
