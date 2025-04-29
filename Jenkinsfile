@@ -11,11 +11,11 @@ pipeline {
                 echo 'No hay build, es HTML plano.'
             }
         }
-        stage('Deploy') {
+            stage('Deploy') {
             steps {
-                sh '''
-                mkdir -p /tmp/deploy/minigestor
-                cp -r * /tmp/deploy/minigestor/
+                bat '''
+                mkdir C:\\deploy\\minigestor
+                xcopy * C:\\deploy\\minigestor /E /Y /I
                 '''
             }
         }
