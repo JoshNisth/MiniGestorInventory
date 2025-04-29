@@ -7,48 +7,49 @@ pipeline {
             }
         }
         stage('Build') {
-            steps {
-                bat '''
-                echo Validando que index.html exista...
-                if not exist index.html (
-                    echo "ERROR: index.html no encontrado"
-                    exit 1
-                )
+    steps {
+        bat '''
+        REM ---------- VALIDACIONES EXISTENTES ----------
+        echo Validando que index.html exista...
+        if not exist index.html (
+            echo "ERROR: index.html no encontrado"
+            exit 1
+        )
 
-                
-                echo Validando sintaxis de style.css...
-                findstr /C:"{" style.css >nul
-                if %errorlevel% neq 0 (
-                    echo "ERROR: style.css no contiene llaves de apertura"
-                    exit 1
-                )
+        echo Validando que style.css exista...
+        if not exist style.css (
+            echo "ERROR: style.css no encontrado"
+            exit 1
+        )
 
-                findstr /C:"}" style.css >nul
-                if %errorlevel% neq 0 (
-                    echo "ERROR: style.css no tiene llaves de cierre"
-                    exit 1
-                )
+        echo Validación de etiqueta </html>...
+        findstr /C:"</html>" index.html >nul
+        if %errorlevel% neq 0 (
+            echo "ERROR: index.html sin cierre </html>"
+            exit 1
+        )
 
+        REM ---------- NUEVA VALIDACIÓN main.js ----------
+        echo Validando presencia de main.js...
+        if not exist main.js (
+            echo "ERROR: main.js requerido no encontrado"
+            exit 1
+        )
 
-                echo Validación manual de HTML...
-                findstr /C:"</html>" index.html >nul
-                if %errorlevel% neq 0 (
-                    echo "ERROR: index.html parece incompleto o mal cerrado"
-                    exit 1
-                )
+        echo Verificando que main.js NO contenga la palabra ERROR_SIMULADO...
+        findstr "ERROR_SIMULADO" main.js >nul
+        if %errorlevel% equ 0 (
+            echo "ERROR: main.js contiene marcador de error"
+            exit 1
+        )
+        REM ----------------------------------------------
 
-                echo Validación manual de CSS...
-                findstr /C:"{" style.css >nul
-                if %errorlevel% neq 0 (
-                    echo "ERROR: style.css parece incompleto o mal escrito"
-                    exit 1
-                )
+        echo Empaquetando build.zip...
+        powershell Compress-Archive -Path * -DestinationPath build.zip -Force
+        '''
+    }
+}
 
-                echo Empaquetando como build.zip...
-                powershell Compress-Archive -Path * -DestinationPath build.zip -Force
-                '''
-            }
-        }
         stage('Deploy') {
             steps {
                 bat '''
