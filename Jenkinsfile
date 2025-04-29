@@ -8,7 +8,23 @@ pipeline {
         }
         stage('Build') {
             steps {
-                echo 'No hay build, es HTML plano.'
+                bat '''
+                echo Validando que index.html exista...
+                if not exist index.html (
+                    echo "ERROR: index.html no encontrado"
+                    exit 1
+                )
+
+                echo Validación manual de HTML...
+                findstr /C:"</html>" index.html >nul
+                if %errorlevel% neq 0 (
+                    echo "ERROR: index.html parece incompleto o mal cerrado"
+                    exit 1
+                )
+
+                echo Empaquetando como build.zip...
+                powershell Compress-Archive -Path * -DestinationPath build.zip -Force
+                '''
             }
         }
         stage('Deploy') {
