@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
     enlaces[2].addEventListener("click", function (e) {
       e.preventDefault();
-      //window.location.href = "reportes.html";
+      window.location.href = "reportes.html";
     });
   });
   
