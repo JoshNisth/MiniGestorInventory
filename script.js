@@ -3,12 +3,12 @@ document.addEventListener("DOMContentLoaded", function () {
   
     enlaces[0].addEventListener("click", function (e) {
       e.preventDefault();
-      window.location.href = "inicio.html"; //AÑADIR EN EL SEGUNDO COMMIT DEL DÍA JEJE
+      window.location.href = "inicio.html";
     });
   
     enlaces[1].addEventListener("click", function (e) {
       e.preventDefault();
-      //window.location.href = "productos.html";
+      window.location.href = "productos.html";
     });
   
     enlaces[2].addEventListener("click", function (e) {
