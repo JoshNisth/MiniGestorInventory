@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
     enlaces[0].addEventListener("click", function (e) {
       e.preventDefault();
-      window.location.href = "inicio.html";
+      window.location.href = "index.html";
     });
   
     enlaces[1].addEventListener("click", function (e) {
