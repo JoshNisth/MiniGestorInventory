@@ -109,14 +109,23 @@
   .tabla-reportes tr:hover {
     background-color: #f1f1f1;
   }
-  
-  /* Gráficos o sección extra */
-  .graficos {
+
+  .dashboard {
     margin-top: 2rem;
     padding: 1rem;
-    background-color: white;
+    display: flex;
+    gap: 20px;
     border-radius: 10px;
     box-shadow: 0 0 5px rgba(0,0,0,0.05);
+    /*margin-bottom: 30px;*/
+  }
+  .card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    flex: 1;
+    text-align: center;
   }
   
   /* Footer */
