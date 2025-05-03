@@ -43,3 +43,30 @@ footer {
   padding: 1em;
   background-color: #ddd;
 }
+.productos-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2em;
+  justify-content: center;
+  padding: 2em;
+}
+
+.producto-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 1em;
+  width: 200px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.producto-card img {
+  max-width: 100%;
+  border-radius: 5px;
+}
+
+.producto-card h3 {
+  margin-top: 0.5em;
+  font-size: 1.1em;
+}
