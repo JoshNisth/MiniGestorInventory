@@ -31,11 +31,15 @@ main {
 }
 
 .info-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   background-color: rgb(182, 160, 202);
-  padding: 1em;
+  padding: 2em;
   border-radius: 10px;
   margin-top: 2em;
-  color: blueviolet;
+  text-align: center;
 }
 
 footer {
