@@ -74,3 +74,14 @@ footer {
   margin-top: 0.5em;
   font-size: 1.1em;
 }
+
+.inicio-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 2em;
+  border-radius: 10px;
+  margin-top: 2em;
+  text-align: center;
+}
