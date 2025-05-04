@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Reportes - MiniGestor</title>
+  <link rel="stylesheet" href="stylereporte.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="productos.html">Productos</a>
+      <a href="reportes.html">Reportes</a>
+    </nav>
+    <h1>Página de Reportes</h1>
+  </header>
+
+  <main class="reportes-container">
+    <section class="descripcion">
+      <p>En esta sección puedes visualizar los reportes detallados del inventario de productos. Aquí se incluyen niveles de stock, productos más vendidos y más.</p>
+    </section>
+
+    <section class="filtros">
+      <h2>Filtros</h2>
+      <label for="categoria">Categoría:</label>
+      <select id="categoria" name="categoria">
+        <option value="todos">Todos</option>
+        <option value="postres">Postres</option>
+        <option value="bebidas">Bebidas</option>
+        <option value="panaderia">Panadería</option>
+      </select>
+
+      <label for="fecha">Fecha:</label>
+      <input type="date" id="fecha" name="fecha">
+    </section>
+
+    <section class="tabla-reportes">
+      <h2>Resumen de Stock</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Categoría</th>
+            <th>Stock</th>
+            <th>Última Actualización</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Tiramisú de snoopy</td>
+            <td>Postres</td>
+            <td>15</td>
+            <td>2025-05-01</td>
+          </tr>
+          <tr>
+            <td>Baklavas</td>
+            <td>Postres</td>
+            <td>8</td>
+            <td>2025-05-01</td>
+          </tr>
+          <tr>
+            <td>Torta Helada</td>
+            <td>Postres</td>
+            <td>12</td>
+            <td>2025-05-03</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="dashboard">
+      <div class="card">
+        <h2>🛒 Total de Productos</h2>
+        <p>120</p>
+      </div>
+      <div class="card">
+        <h2>⚠️ Por Agotarse</h2>
+        <p>8</p>
+      </div>
+      <div class="card">
+        <h2>🕒 Última actualización</h2>
+        <p>3 de mayo, 2025</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 MiniGestor Inventory</p>
+  </footer>
+</body>
+</html>
