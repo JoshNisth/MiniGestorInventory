@@ -6,49 +6,50 @@ pipeline {
                 git url: 'https://github.com/JoshNisth/MiniGestorInventory.git', branch: 'main'
             }
         }
+
         stage('Build') {
-    steps {
-        bat '''
-        REM ---------- VALIDACIONES EXISTENTES ----------
-        echo Validando que index.html exista...
-        if not exist index.html (
-            echo "ERROR: index.html no encontrado"
-            exit 1
-        )
+            steps {
+                bat '''
+                REM ---------- VALIDACIONES EXISTENTES ----------
+                echo Validando que index.html exista...
+                if not exist index.html (
+                    echo "ERROR: index.html no encontrado"
+                    exit 1
+                )
 
-        echo Validando que style.css exista...
-        if not exist style.css (
-            echo "ERROR: style.css no encontrado"
-            exit 1
-        )
+                echo Validando que style.css exista...
+                if not exist style.css (
+                    echo "ERROR: style.css no encontrado"
+                    exit 1
+                )
 
-        echo Validación de etiqueta </html>...
-        findstr /C:"</html>" index.html >nul
-        if %errorlevel% neq 0 (
-            echo "ERROR: index.html sin cierre </html>"
-            exit 1
-        )
+                echo Validación de etiqueta </html>...
+                findstr /C:"</html>" index.html >nul
+                if %errorlevel% neq 0 (
+                    echo "ERROR: index.html sin cierre </html>"
+                    exit 1
+                )
 
-        REM ---------- NUEVA VALIDACIÓN main.js ----------
-        echo Validando presencia de main.js...
-        if not exist main.js (
-            echo "ERROR: main.js requerido no encontrado"
-            exit 1
-        )
+                REM ---------- NUEVA VALIDACIÓN script.js ----------
+                echo Validando presencia de script.js...
+                if not exist script.js (
+                    echo "ERROR: script.js requerido no encontrado"
+                    exit 1
+                )
 
-        echo Verificando que main.js NO contenga la palabra ERROR_SIMULADO...
-        findstr "ERROR_SIMULADO" main.js >nul
-        if %errorlevel% equ 0 (
-            echo "ERROR: main.js contiene marcador de error"
-            exit 1
-        )
-        REM ----------------------------------------------
+                echo Verificando que script.js NO contenga la palabra ERROR_SIMULADO...
+                findstr "ERROR_SIMULADO" script.js >nul
+                if %errorlevel% equ 0 (
+                    echo "ERROR: script.js contiene marcador de error"
+                    exit 1
+                )
+                REM ----------------------------------------------
 
-        echo Empaquetando build.zip...
-        powershell Compress-Archive -Path * -DestinationPath build.zip -Force
-        '''
-    }
-}
+                echo Empaquetando build.zip...
+                powershell Compress-Archive -Path * -DestinationPath build.zip -Force
+                '''
+            }
+        }
 
         stage('Deploy') {
             steps {
