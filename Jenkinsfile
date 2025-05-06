@@ -37,9 +37,16 @@ pipeline {
                     exit 1
                 )
 
+                echo Verificando que script.js NO contenga la palabra ERROR_SIMULADO...
+                findstr "ERROR_SIMULADO" script.js >nul
+                if %errorlevel% equ 0 (
+                    echo "ERROR: script.js contiene marcador de error"
+                    exit 1
+                )
+                REM ----------------------------------------------
 
                 echo Empaquetando build.zip...
-                powerechoshell Compress-Archive -Path * -DestinationPath build.zip -Force
+                powershell Compress-Archive -Path * -DestinationPath build.zip -Force
                 '''
             }
         }
